@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Verifier</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div style="width: 100vh; position: absolute; box-sizing: border-box; top: 50%; left: 25%; box-shadow:100px;" class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">Enter Your Password</span>
+        </div>
+        <form id="form_it_is" style="width: 450px;">
+        <input type="text" class="form-control" id="pass" aria-describedby="basic-addon3">
+        </form>
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+    const form = document.getElementById("form_it_is");
+
+    form.addEventListener("submit", ()=>{
+        event.preventDefault();
+
+        const entered = document.getElementById("pass").value;
+
+        const n = entered.length;
+
+        let marks = 0
+
+        let hasLower = false
+        let hasUpper = false
+        let hasDigit = false
+        let specialChar = false
+
+        for (i in entered){
+            if (i.match(/[a-z]/g)){
+                hasLower = true
+                marks +=1
+            }
+            else if (i.match(/[A-Z]/g)){
+                hasUpper = true
+                marks +=1
+            }
+            else if(i.match(/[0-9]/g)){
+                hasDigit = true
+                marks +=1
+            }
+            else if (i.match(/[!@#$%^&*()_+=\|~`[\]}{?/>.<,}]/g)){
+                specialChar = true
+                marks +=2
+            }
+            else continue;
+        } 
+
+
+        if(marks>=16 && n>=8){
+            alert("Strong")
+        }
+        else if (marks<16 && marks>=7){
+            alert("Moderate")
+        }
+        else if (marks<16 && marks>=7 && n<8 && n>=6){
+            alert("Moderate")
+        }
+        else{
+            alert("Weak")
+        }
+    })
+</script>
+</html>
