@@ -8,7 +8,6 @@ def printStrongNess(inn):
     hasUpper = False
     hasDigit = False
     specialChar = False
-    normalChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
 
     for i in inn: 
         if (re.search("([a-z])", i)):
@@ -30,9 +29,7 @@ def printStrongNess(inn):
 
     if(marks>=16 and n>=8 ):
         print("Strong")
-    elif(marks<=16 and marks>=8):
-        print("Moderate")
-    elif (marks<16 and marks>=8 and n<8 and n>=6):
+    elif (marks<16 and marks>=7 and n<8 and n>=6):
         print("Moderate")
     else:
         print("Weak")
